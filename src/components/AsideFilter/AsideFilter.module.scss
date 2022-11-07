@@ -1,0 +1,54 @@
+.aside-filter {
+    background-color: #ffffff;
+    padding: 0;
+    box-shadow: 0px 2px 8px RGB(0 0 0 / 10%);
+    border-radius: 5px;
+    padding-bottom: 10px;
+    font-family: "Open Sans", sans-serif;
+    color: #4a4a4a;
+    height: fit-content;
+  }
+  
+  .aside-filter__title {
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0.5px;
+    padding: 20px 20px 10px;
+  }
+  
+  .options-list {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    list-style: none;
+  }
+  
+  .option__label {
+    padding-left: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 40px;
+    transition: all 0.2s;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+  }
+  
+  .option__input {
+    width: 18px;
+    height: 18px;
+    overflow: hidden;
+    border-radius: 2px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    border-color: #9abbce;
+    margin-right: 10px;
+    transition: all 0.2s;
+  }

@@ -1,0 +1,58 @@
+.ticket-card {
+    width: 100%;
+      background-color: #ffffff;
+      padding: 20px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px RGB(0 0 0 / 10%);
+  }
+  
+  .ticket-card__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .ticket-price {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+    color: #2196f3;
+  }
+  
+  .ticket-card__table {
+    display: block;
+    margin-right: 40px;
+  }
+  
+  .table__head, .table__body {
+    display: table;
+    width: 100%;
+  }
+  
+  tr {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 1em;
+  }
+  
+  th {
+    color: #A0B0B9;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+  
+  td {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px;
+    color: #4A4A4A;
+    width: fit-content;
+  }

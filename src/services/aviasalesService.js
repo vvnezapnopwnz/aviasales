@@ -1,5 +1,5 @@
 // import { format } from "date-fns";
-export default class MovieService {
+export default class aviasalesService {
   constructor() {
     this.apiBase = "https://api.themoviedb.org/3";
     this.stateId = null;
