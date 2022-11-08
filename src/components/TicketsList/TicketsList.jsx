@@ -1,17 +1,30 @@
 import React from "react";
 import classes from "./TicketsList.module.scss";
 import { SingleTicket } from "../SingleTicket";
+import { connect } from 'react-redux';
 
-export default function TicketsList() {
+import * as actions from '../../actions'
+
+function TicketsList({tickets}) {
+  // console.log(tickets)
   return (
     <ul className={classes["tickets__list"]}>
-      <SingleTicket />
-      {/* {
-      todos.map((todo, index) => (
-        <Todo key={index} {...todo} onClick={() => onTodoClick(index)} />
+      {/* <SingleTicket /> */}
+      {
+      tickets.map((ticket, index) => (
+        <SingleTicket 
+        ticket={{index,...ticket}}
+        key={index}/>
       ))
-      } */}
+      }
     </ul>
   );
 }
- 
+
+const mapStateToProps = (state) => {
+  return {
+      ...state,
+  }
+}
+
+export default connect(mapStateToProps, actions)(TicketsList);

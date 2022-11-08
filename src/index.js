@@ -1,15 +1,41 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import { App } from './components/App'
-import rootReducer from './reducers'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createStore, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+import { App } from "./components/App";
+import rootReducer from "./reducers";
+import reduxThunk from "redux-thunk";
+import {getTicketsAsync} from './actions'
+// function loggerMiddleware(store) {
+//   return function (next) {
+//     return function (action) {
+//       const result = next(action)
+//       console.log('middleware', store.getState())
+//       return result
+//     }
+//   }
+// }
+const composeEnhancers =
+  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+      })
+    : compose;
 
-const store = createStore(rootReducer)
-console.log(store.getState())
-const root = ReactDOM.createRoot(document.getElementById('root'))
+const loggerMiddleware = (store) => (next) => (action) => {
+  const result = next(action);
+  console.log("middleware", store.getState());
+  return result;
+};
+
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(loggerMiddleware, reduxThunk))
+);
+store.dispatch(getTicketsAsync())
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <App />
-   </Provider>
-)
+  </Provider>
+);
