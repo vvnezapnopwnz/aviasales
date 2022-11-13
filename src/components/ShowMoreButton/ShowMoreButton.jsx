@@ -1,13 +1,30 @@
-import React from "react";
-import classes from "./ShowMoreButton.module.scss";
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
 
+import * as actions from '../../actions'
+import classes from './ShowMoreButton.module.scss'
 
-export default function ShowMoreButton () {
-  
-      return (
-        <button className={classes['show-more__button']}>
-        Показать еще 5 билетов!
-      </button>
-      );
+function ShowMoreButton({ showMoreTickets }) {
+  return (
+    <button onClick={() => showMoreTickets()} className={classes['show-more__button']}>
+      Показать еще 5 билетов!
+    </button>
+  )
+}
+
+ShowMoreButton.defaultProps = {
+  showMoreTickets: () => {}
+}
+
+ShowMoreButton.propTypes = {
+  showMoreTickets: PropTypes.func.isRequired
+}
+
+const mapStateToProps = (state) => {
+  return {
+    ...state,
   }
-  
+}
+
+export default connect(mapStateToProps, actions)(ShowMoreButton)

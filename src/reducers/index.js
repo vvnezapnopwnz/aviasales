@@ -1,9 +1,12 @@
 import { combineReducers } from 'redux'
+
 import filterReducer from './filterReducer'
 import counterReducer from './counterReducer'
 import ticketsReducer from './ticketsReducer'
+import tabsReducer from './tabsReducer'
 export default combineReducers({
-    filters: filterReducer,
+    filtersData: filterReducer,
     counter: counterReducer,
-    tickets: ticketsReducer
+    ticketsData: ticketsReducer,
+    tabsData: tabsReducer,
 })

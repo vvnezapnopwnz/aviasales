@@ -1,28 +1,52 @@
-import React from "react";
-import classes from "./App.module.scss";
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
 
+import * as actions from '../../actions'
+import { AsideFilter } from '../AsideFilter'
 import { Header } from '../Header'
-// import { AsideFilter } from '../AsideFilter'
+import { ProgressBar } from '../ProgressBar'
+import { ShowMoreButton } from '../ShowMoreButton'
 import { TabButtons } from '../TabButtons'
 import { TicketsList } from '../TicketsList'
-import { ShowMoreButton } from '../ShowMoreButton'
-import { AsideFilter } from '../AsideFilter'
-import Counter from './Counter'
-export default function App () {
+import classes from './App.module.scss'
 
-    return (
-      <div className={classes.App}>
-          <Header />
-        <main className={classes["main"]}>
-            {/* <AsideFilter /> */}
-            <AsideFilter />
-          <section className={classes['main-content']}>
-            <TabButtons />
-            <TicketsList />
-            <ShowMoreButton />
-          </section>
-          <Counter />
-        </main>
-      </div>
-    );
+function App({ counter }) {
+  let haveProgress = counter.status === 'loaded' ? null : <ProgressBar bgcolor="#ff00ff" />
+  return (
+    <div className={classes.App}>
+      <Header />
+      <main className={classes['main']}>
+        <AsideFilter />
+        <section className={classes['main-content']}>
+          <TabButtons />
+          {haveProgress}
+          <TicketsList />
+          <ShowMoreButton />
+        </section>
+      </main>
+    </div>
+  )
 }
+
+App.defaultProps = {
+  counter: {
+    status: '',
+    progress: 0,
+  },
+}
+
+App.propTypes = {
+  counter: PropTypes.shape({
+    progress: PropTypes.number.isRequired,
+    status: PropTypes.string.isRequired,
+  })
+}
+
+const mapStateToProps = (state) => {
+  return {
+    ...state,
+  }
+}
+
+export default connect(mapStateToProps, actions)(App)

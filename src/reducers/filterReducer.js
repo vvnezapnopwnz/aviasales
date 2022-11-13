@@ -1,26 +1,26 @@
-const initialState =  [
+const initialState =  {
+  filters: [
   { id: 1, filterName: "Все", active: false },
   { id: 2, filterName: "Без пересадок", active: false },
   { id: 3, filterName: "1 пересадка", active: false },
   { id: 4, filterName: "2 пересадки", active: false },
   { id: 5, filterName: "3 пересадки", active: false },
-]
+], 
+  filterInitialized: false,
+}
 
 
 const filterReducer = (state = initialState, action) => {
-// const { counter } = state;
-// console.log(state)
 switch (action.type) {
   case "SHOW_ALL":
-    const isActive = state[0].active;
-    return state.map((filter) => {
+    const isActive = state.filters[0].active;
+    return { filters: state.filters.map((filter) => {
         filter.active = !isActive;
         return filter;
-      })
+      }), filterInitialized: false}
   case "SHOW_CURRENT":
-    // console.log('show_current')
     let isAllActive = true;
-    const remainingFilters = state.slice(1).map((filter) => {
+    const remainingFilters = state.filters.slice(1).map((filter) => {
       if (filter.id === action.filterId) {
         filter.active = !filter.active;
       }
@@ -29,15 +29,11 @@ switch (action.type) {
       }
       return filter;
     });
-    return [
-        { ...state[0], active: isAllActive },
+    return { filters: [
+        { ...state.filters[0], active: isAllActive },
         ...remainingFilters,
-      ]
-      case 'ASYNC_INC':
-        return state.map((filter) => {
-            filter.active = false;
-            return filter;
-          })
+      ], filterInitialized: true
+    }
   default:
     return state;
 }

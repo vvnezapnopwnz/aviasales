@@ -1,17 +1,36 @@
-const initialState = [];
+const initialState = {
+  tickets: [],
+  ticketsToShow: 5,
+}
 
 const ticketsReducer = (state = initialState, action) => {
-  // console.log(state)
   switch (action.type) {
-    case "@@INIT":
-        // console.log("@@INIT", action)
-      return state;
-    case "GET_TICKETS_ASYNC":
-        console.log(action)
-      return state.concat(action.payload.tickets);
+    case 'REQUEST_TICKETS':
+      let newState = state.tickets.concat(action.payload.tickets)
+      return { ...state, tickets: newState }
+    case 'TAB_CLICK':
+      let sortedTickets
+      if(action.tabName === 'cheap') {
+        sortedTickets = state.tickets.sort((a, b) => {
+          return a.price - b.price
+        })
+      } else if(action.tabName === 'fast') {
+        sortedTickets = state.tickets.sort((a, b) => {
+          const overalDuration = ({ segments }) => segments.reduce((acc, {duration}) => acc + duration, 0) 
+          return overalDuration(a) - overalDuration(b)
+        })
+      } else {
+        sortedTickets = state.tickets
+      }
+      return {
+        ...state,
+        tickets: sortedTickets
+      }
+    case 'SHOW_MORE':
+      return { ...state, ticketsToShow: state.ticketsToShow + 5}
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default ticketsReducer;
+export default ticketsReducer

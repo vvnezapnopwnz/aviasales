@@ -1,24 +1,22 @@
-// import { format } from "date-fns";
 export default class aviasalesService {
   constructor() {
-    this.apiBase = "https://api.themoviedb.org/3";
-    this.stateId = null;
+    this.apiBase = 'https://api.themoviedb.org/3'
+    this.searchId = null
   }
 
   getSearchId = async () => {
-    
-      const res = await fetch(
-        `https://front-test.dev.aviasales.ru/search`
-      );
-      return res.json();
+    const res = await fetch(`https://front-test.dev.aviasales.ru/search`)
+    const result = await res.json()
+    this.searchId = result.searchId
+  }
 
-  };
-
-  getTickets = async({searchId}) => {
+  getTickets = async () => {
+    if (this.searchId === null) {
+      await this.getSearchId()
+    }
     const res = await fetch(`
-    https://front-test.dev.aviasales.ru/tickets?searchId=${searchId}`)
-
-    return await res.json();
-}
-
+    https://front-test.dev.aviasales.ru/tickets?searchId=${this.searchId}`)
+    const result = await res.json()
+    return result
+  }
 }

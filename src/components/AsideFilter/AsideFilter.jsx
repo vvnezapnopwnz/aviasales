@@ -1,59 +1,63 @@
-import React from "react";
-import classes from "./AsideFilter.module.scss";
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
 
 import * as actions from '../../actions'
+import classes from './AsideFilter.module.scss'
 
-function AsideFilter({filters, onFilterChange}) {
-  //   console.log(filters);
-    const filterCheckboxes = () => filters.map(filter => {
+function AsideFilter({ filtersData, onFilterChange }) {
+
+  const { filters } = filtersData
+  const filterCheckboxes = () =>
+    filters.map((filter) => {
       return (
         <li key={filter.id}>
-        <label className={classes["option__label"]}>
-          <input
-            className={classes["option__input"]}
-            type="checkbox"
-            id="checkbox-1"
-            onChange={() => onFilterChange(filter.id)}
-            checked={filter.active}
-          />
-          {filter.filterName}
-        </label>
-      </li>
+          <label className={classes['option__label']}>
+            <input
+              className={classes['option__input']}
+              type="checkbox"
+              id="checkbox-1"
+              onChange={() => onFilterChange(filter.id, filters)}
+              checked={filter.active}
+            />
+            {filter.filterName}
+          </label>
+        </li>
       )
     })
-  
-    return (
-      <aside className={classes["aside-filter"]}>
-        <h3 className={classes["aside-filter__title"]}>КОЛИЧЕСТВО ПЕРЕСАДОК</h3>
-        <ul className={classes["options-list"]}>
-          { filterCheckboxes()}
-        </ul>
-      </aside>
-    );
+
+  return (
+    <aside className={classes['aside-filter']}>
+      <h3 className={classes['aside-filter__title']}>КОЛИЧЕСТВО ПЕРЕСАДОК</h3>
+      <ul className={classes['options-list']}>{filterCheckboxes()}</ul>
+    </aside>
+  )
+}
+
+AsideFilter.defaultProps = {
+  tabsData: {
+    tabs: [],
+    previousDataContainer: []
+  },
+  filtersData: {
+    filters: [],
+    filterInitialized: false,
+  },
+  ticketsData: {
+    tickets: [],
+    ticketsToShow: 5
   }
-  
-  
-  const mapStateToProps = (state) => {
-      // const { counter } = state
-      // console.log(state)
-      return {
-          ...state,
-      }
+}
+
+AsideFilter.propTypes = {
+  filtersData: PropTypes.object.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = (state) => {
+  return {
+    ...state,
   }
-  
-  // const mapDispatchToProps = (dispatch) => {
-  
-  //   // const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
-  //   // return {
-  //   //   // inc: () => dispatch(inc()),
-  //   //   // dec: () => dispatch(dec()),
-  //   //   inc, dec,
-  //   //   rnd
-  //   // }
-  //   return bindActionCreators(actions, dispatch)
-  // }
-  
-  // export default connect(mapStateToProps, mapDispatchToProps)(Counter);
-  export default connect(mapStateToProps, actions)(AsideFilter);
-  
+}
+
+export default connect(mapStateToProps, actions)(AsideFilter)
