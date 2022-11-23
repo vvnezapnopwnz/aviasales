@@ -1,4 +1,4 @@
-.main-tabs {
+.Main_Tabs {
   width: 100%;
   height: 50px;
   display: flex;
@@ -8,8 +8,8 @@
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   transition: all 0.2s;
 }
-  
-.main-tabs__label {
+
+.Main_Tabs_Label {
   border: none;
   transition: all 0.2s;
   display: flex;
@@ -27,33 +27,32 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  background: #FFFFFF;
-  border: 1px solid #DFE5EC;
+  background: #ffffff;
+  border: 1px solid #dfe5ec;
 }
-  
-.main-tabs__label-cheap {
+
+.Main_Tabs_Label-cheap {
   border-radius: 5px 0 0 5px;
   border-right: 1px solid #dfe5ec;
 }
-.main-tabs__label-fast {
+.Main_Tabs_Label-fast {
   border-radius: none;
 }
-.main-tabs__label-optimum {
+.Main_Tabs_Label-optimum {
   border-radius: 0 5px 5px 0;
   border-left: 1px solid #dfe5ec;
 }
 
-.main-tabs__label:active,
-.main-tabs__label-active,
-.main-tabs__label:checked  {
+.Main_Tabs_Label:active,
+.Main_Tabs_Label-active,
+.Main_Tabs_Label:checked {
   background-color: #2196f3;
   color: #ffffff;
 }
-.main-tabs__input {
-display: none;
+.Main_Tabs_Input {
+  display: none;
 }
-.main-tabs__input:checked+.main-tabs__label
-{
+.Main_Tabs_Input:checked + .Main_Tabs_Label {
   background-color: #2196f3;
   color: #ffffff;
 }

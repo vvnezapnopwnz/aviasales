@@ -7,7 +7,7 @@ import classes from './ShowMoreButton.module.scss'
 
 function ShowMoreButton({ showMoreTickets }) {
   return (
-    <button onClick={() => showMoreTickets()} className={classes['show-more__button']}>
+    <button onClick={() => showMoreTickets()} className={classes.Show_More_Button}>
       Показать еще 5 билетов!
     </button>
   )

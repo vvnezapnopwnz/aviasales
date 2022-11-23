@@ -12,9 +12,9 @@ function AsideFilter({ filtersData, onFilterChange }) {
     filters.map((filter) => {
       return (
         <li key={filter.id}>
-          <label className={classes['option__label']}>
+          <label className={classes.Option_Label}>
             <input
-              className={classes['option__input']}
+              className={classes.Option_Input}
               type="checkbox"
               id="checkbox-1"
               onChange={() => onFilterChange(filter.id, filters)}
@@ -27,9 +27,9 @@ function AsideFilter({ filtersData, onFilterChange }) {
     })
 
   return (
-    <aside className={classes['aside-filter']}>
-      <h3 className={classes['aside-filter__title']}>КОЛИЧЕСТВО ПЕРЕСАДОК</h3>
-      <ul className={classes['options-list']}>{filterCheckboxes()}</ul>
+    <aside className={classes.Aside_Filter}>
+      <h3 className={classes.Aside_Filter_Title}>КОЛИЧЕСТВО ПЕРЕСАДОК</h3>
+      <ul className={classes.Options_List}>{filterCheckboxes()}</ul>
     </aside>
   )
 }

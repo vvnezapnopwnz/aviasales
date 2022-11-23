@@ -6,6 +6,7 @@ import reduxThunk from 'redux-thunk'
 
 import { fetchTicketsIfNeeded } from './actions'
 import { App } from './components/App'
+import './index.css'
 import rootReducer from './reducers'
 import aviasalesService from './services/aviasalesService'
 

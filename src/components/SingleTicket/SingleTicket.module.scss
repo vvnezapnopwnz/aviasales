@@ -1,4 +1,4 @@
-.ticket-card {
+.Ticket_Card {
     width: 100%;
       background-color: #ffffff;
       padding: 20px;
@@ -7,14 +7,14 @@
       box-shadow: 0 2px 8px RGB(0 0 0 / 10%);
   }
   
-  .ticket-card__head {
+  .Ticket_Card_Head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
   }
   
-  .ticket-price {
+  .Ticket_Price {
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
@@ -22,12 +22,12 @@
     color: #2196f3;
   }
   
-  .ticket-card__table {
+  .Ticket_Card_Table {
     display: block;
     margin-right: 40px;
   }
   
-  .table__head, .table__body {
+  .Table_Head, .Table_Body {
     display: table;
     width: 100%;
   }

@@ -16,9 +16,9 @@ function App({ counter }) {
   return (
     <div className={classes.App}>
       <Header />
-      <main className={classes['main']}>
+      <main className={classes.Main}>
         <AsideFilter />
-        <section className={classes['main-content']}>
+        <section className={classes.Main_Content}>
           <TabButtons />
           {haveProgress}
           <TicketsList />

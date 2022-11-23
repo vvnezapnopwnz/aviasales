@@ -39,7 +39,7 @@ export default function SingleTicket({ index, ticket }) {
     return ticketsData.map(({ origin, destination, date, stops, duration }) => {
       return (
         <React.Fragment key={`${index}-${origin}`}>
-          <thead className={classes['table__head']}>
+          <thead className={classes.Table_Head}>
             <tr>
               <th>
                 {origin} – {destination}
@@ -48,7 +48,7 @@ export default function SingleTicket({ index, ticket }) {
               <th>{stopsCount[stops.length]}</th>
             </tr>
           </thead>
-          <tbody className={classes['table__body']}>
+          <tbody className={classes.Table_Body}>
             <tr>
               <td>{getFlightRange(duration, date)}</td>
               <td>{getFlightDuration(duration)}</td>
@@ -61,16 +61,16 @@ export default function SingleTicket({ index, ticket }) {
   }
 
   return (
-    <li className={classes['ticket-card']}>
-      <div className={classes['ticket-card__head']}>
-        <span className={classes['ticket-price']}>{price} Р </span>
+    <li className={classes.Ticket_Card}>
+      <div className={classes.Ticket_Card_Head}>
+        <span className={classes.Ticket_Price}>{price} Р </span>
         <img
-          className={classes['ticket-card__logo']}
+          className={classes.Ticket_Card_Logo}
           src={`https://pics.avs.io/99/36/${carrier}.png`}
           alt={`${carrier} logo`}
         />
       </div>
-      <table className={classes['ticket-card__table']}>{showTicketsInfo(segments)}</table>
+      <table className={classes.Ticket_Card_Table}>{showTicketsInfo(segments)}</table>
     </li>
   )
 }

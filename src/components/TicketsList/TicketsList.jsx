@@ -9,7 +9,7 @@ import classes from './TicketsList.module.scss'
 function TicketsList({ ticketsData, tabsData, filtersData }) {
   const { filters, filterInitialized } = filtersData
   const { tickets, ticketsToShow } = ticketsData
-
+  
   const ticketsToRender =
     tabsData.tabs.find((tab) => tab.active === true && tab.name !== 'optimum') !== undefined
       ? tickets
@@ -23,7 +23,7 @@ function TicketsList({ ticketsData, tabsData, filtersData }) {
   }
   const filteredTickets = ticketsToRender.filter((ticket) => {
     const { segments } = ticket
-    const segmentsStops = segments.some((segment) => {
+    const segmentsStops = segments.every((segment) => {
       let stopsTypeName = stopsCount[segment.stops.length]
       if (activeFilters.map((filter) => filter.filterName).includes(stopsTypeName)) {
         return true
@@ -38,13 +38,13 @@ function TicketsList({ ticketsData, tabsData, filtersData }) {
     : ticketsToRender.slice(0, ticketsToShow)
   if (slicedTickets.length === 0) {
     return (
-      <div className={classes['alert__message']}>
+      <div className={classes.Alert_Message}>
         <strong>Не найдено!</strong> По вашему запросу билетов не найдено.
       </div>
     )
   }
   return (
-    <ul className={classes['tickets__list']}>
+    <ul className={classes.Tickets_List}>
       {slicedTickets.map((ticket, index) => (
         <SingleTicket ticket={{ index, ...ticket }} key={index} />
       ))}

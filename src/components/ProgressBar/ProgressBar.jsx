@@ -7,8 +7,8 @@ import classes from './ProgressBar.module.scss'
 
 const ProgressBar = ({ counter }) => {
   return (
-    <div className={classes['progressbar']}>
-      <div className={classes['progressbar__line']} style={{ width: `${counter.progress}%` }}></div>
+    <div className={classes.Progressbar}>
+      <div className={classes.Progressbar_Line} style={{ width: `${counter.progress}%` }}></div>
     </div>
   )
 }
